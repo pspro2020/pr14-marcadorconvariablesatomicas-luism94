@@ -1,5 +1,7 @@
 package codes;
 
+import java.time.LocalDateTime;
+
 public class Main {
 	
 	private static int NUM_OF_THREADS = 3;
@@ -28,8 +30,7 @@ public class Main {
 			board.showNumberThrows();
 		} catch (InterruptedException e) {
 			//Innecesario porque el hilo principal no puede ser interrumpido
-			System.out.println(String.format(Messages.THREAD_EXCEPTION, Messages.TIME, Thread.currentThread().getName(), e.getMessage()));
+			System.out.println(String.format(Messages.THREAD_EXCEPTION, LocalDateTime.now().format(Messages.TIME_FORMATTER), Thread.currentThread().getName(), e.getMessage()));
 		}
 	}
-
 }

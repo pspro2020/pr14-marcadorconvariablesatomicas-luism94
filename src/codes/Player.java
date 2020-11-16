@@ -1,5 +1,6 @@
 package codes;
 
+import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 
 public class Player implements Runnable {
@@ -24,13 +25,13 @@ public class Player implements Runnable {
 	public void run() {
 		for (int i = 0; i < NUM_OF_THROWS; i++) {
 			try {
-				System.out.println(String.format(Messages.THROWING_DIE, Messages.TIME, Thread.currentThread().getName()));
+				System.out.println(String.format(Messages.THROWING_DIE, LocalDateTime.now().format(Messages.TIME_FORMATTER), Thread.currentThread().getName()));
 				//Se actualiza la tirada del valor que retorna el dado
 				scores.updateScores(die.throwDie());
 				//El hilo queda en espera despues de tirar el dado
 				TimeUnit.MICROSECONDS.sleep(100);	
 			} catch (InterruptedException e) {
-				System.out.printf(Messages.THREAD_EXCEPTION, Messages.TIME, Thread.currentThread().getName(), e.getMessage());
+				System.out.printf(Messages.THREAD_EXCEPTION, LocalDateTime.now().format(Messages.TIME_FORMATTER), Thread.currentThread().getName(), e.getMessage());
 				return;
 			}
 		}
